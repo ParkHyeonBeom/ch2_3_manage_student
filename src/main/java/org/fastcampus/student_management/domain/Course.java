@@ -1,9 +1,11 @@
 package org.fastcampus.student_management.domain;
 
 public class Course {
+  // final 변수는 초기화 이후 값 변경이 불가능하다.
+  // private final 변수는 외부에서 접근, 값 변경이 불가능하다.
   private final Student student;
   private final String courseName;
-  private final int fee;
+  private CourseFee courseFee;
   private final DayOfWeek dayOfWeek;
   private final Long courseTime;
 
@@ -14,7 +16,7 @@ public class Course {
 
     this.student = student;
     this.courseName = courseName;
-    this.fee = fee;
+    this.courseFee = new CourseFee(fee);
     this.dayOfWeek = dayOfWeek;
     this.courseTime = courseTime;
   }
@@ -36,7 +38,11 @@ public class Course {
   }
 
   public int getFee() {
-    return fee;
+    return courseFee.getFee();
+  }
+
+  public void changeFee(int fee) {
+    courseFee.changeFee(fee);
   }
 
   public DayOfWeek getDayOfWeek() {
